@@ -1,7 +1,7 @@
 {
     "name": "Pyxel Dev Environment",
     "image": "mcr.microsoft.com/devcontainers/python:3.14-trixie",
-    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y libsdl2-dev libsdl2-image-dev && pip3 install pyxel",
+    "postCreateCommand": "sudo apt-get update && sudo apt-get install -y libsdl2-dev libsdl2-image-dev git-lfs && pip3 install pyxel",
     "customizations": {
         "vscode": {
             "extensions": [
