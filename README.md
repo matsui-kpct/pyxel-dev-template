@@ -102,9 +102,9 @@ Pyxelのリソースファイルです。
 `server.py`は、PyxelアプリのHTML化からローカルサーバーの起動までを自動化するスクリプトです。HTML化の手順とアプリサーバーの立て方をまとめて実行できます。
 - **実行方法**:
   ```bash
-  python3 server.py
+  python3 server.py <file_name>.py
   ```
-  - スクリプトが自動で`pyxel package`と`pyxel app2html`を実行し、`pyxel-dev.html`を生成します。
+  - スクリプトが自動で`pyxel package`と`pyxel app2html`を実行し、指定したPythonファイル名に基づいたHTMLファイルを生成します。
   - その後、ローカルサーバーがポート8000で起動します。
   - ブラウザで`http://localhost:8000/`を開くと、アプリが実行されます（Codespacesの場合はポートフォワーディングURLを使用）。
   - サーバーを停止するにはCtrl+Cを押してください。
