@@ -3,6 +3,23 @@
 このプロジェクトは Pyxel を使ったシンプルなちくわゲームです。
 各ソースコードファイルおよびアセットファイルの役割をまとめます。
 
+## Table of Contents
+- [Python ファイル](#python-ファイル)
+  - [game.py](#gamepy)
+  - [background.py](#backgroundpy)
+  - [player.py](#playerpy)
+  - [chikuwa.py](#chikuwa.py)
+  - [collision.py](#collisionpy)
+  - [hud.py](#hudpy)
+- [アセットファイル](#アセットファイル)
+  - [assets/game.pyxres](#assetsgamepyxres)
+- [実行方法](#実行方法)
+  - [server.pyを使用したワンクリック実行](#serverpyを使用したワンクリック実行)
+  - [Pyxelアプリの実行](#pyxelアプリの実行)
+  - [HTML化の手順](#html化の手順)
+  - [アプリサーバーの立て方](#アプリサーバーの立て方)
+
+
 ## Python ファイル
 
 ### game.py
@@ -78,3 +95,54 @@ Pyxelのリソースファイルです。
 - スプライト / タイルマップ / サウンド / ミュージック などを定義
 - スプライトの中身のイメージ
 ![スプライトの中身のイメージ](images/スプライトの中身のイメージ.png)
+
+## スクリプトを利用したアプリの実行方法
+
+### server.pyを使用したワンクリック実行
+`server.py`は、PyxelアプリのHTML化からローカルサーバーの起動までを自動化するスクリプトです。HTML化の手順とアプリサーバーの立て方をまとめて実行できます。
+- **実行方法**:
+  ```bash
+  python3 server.py
+  ```
+  - スクリプトが自動で`pyxel package`と`pyxel app2html`を実行し、`pyxel-dev.html`を生成します。
+  - その後、ローカルサーバーがポート8000で起動します。
+  - ブラウザで`http://localhost:8000/`を開くと、アプリが実行されます（Codespacesの場合はポートフォワーディングURLを使用）。
+  - サーバーを停止するにはCtrl+Cを押してください。
+
+> [!NOTE]
+> **Codespace環境での注意**: Codespaceはクラウド上のコンテナ環境のため、`localhost`ではアクセスできません。サーバーを起動後、VS Codeのポートビューでポート8000を公開し、提供されたURL（例: `https://xxxxx-8000.app.github.dev`）を使用してブラウザでアクセスしてください。
+
+## スクリプトを利用しないアプリの実行方法
+
+### Pyxelアプリの実行
+1. Pyxelがインストールされていることを確認してください（`pip install pyxel`）。
+2. ターミナルで以下のコマンドを実行:
+   ```bash
+   pyxel run game.py
+   ```
+   - ゲームウィンドウが開き、ちくわゲームが開始されます。
+
+> [!WARNING]
+> **Codespace環境での注意**: CodespaceではGUIウィンドウが表示されないため、この実行方法は適用できません。代わりにHTML化の手順を使用してWebブラウザで実行してください。
+
+### HTML化の手順
+PyxelアプリをWebブラウザで実行可能なHTMLファイルに変換するには、以下の手順を実行してください。
+1. Pyxelがインストールされていることを確認。
+2. ターミナルで以下のコマンドを実行:
+   ```bash
+   pyxel package . game.py
+   ```
+3. ターミナルで以下のコマンドを実行:
+   ```bash
+   pyxel app2html game.pyxapp
+   ```
+   - これにより、`pyxel-dev.html`ファイルが生成されます。
+4. 生成された`pyxel-dev.html`をWebブラウザで開くと、アプリが実行されます（ローカルサーバー経由で開くことを推奨）。
+
+### アプリサーバーの立て方
+HTML化したアプリをローカルでテストするには、簡易HTTPサーバーを立ててください。
+- **標準のPythonサーバー**:
+  ```bash
+  python3 -m http.server 8000
+  ```
+  - ブラウザで`http://localhost:8000/pyxel-dev.html`を開きます。
